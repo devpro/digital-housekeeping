@@ -30,3 +30,5 @@ git push origin --all
 git push --tags
 
 cd $basepath
+
+az repos delete --id "${repoid}" --org https://dev.azure.com/$originorganization --project $originproject --yes
