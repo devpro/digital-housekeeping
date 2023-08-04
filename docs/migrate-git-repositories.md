@@ -18,20 +18,20 @@ scripts/migrate_git_repository.sh <origin> <destination>
 
 ### Git repository migration between Azure Repos (Azure DevOps)
 
-* Make sure Azure CLI is installed and the Azure DevOps extension has been added (ref. [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/devops/cli/))
+* Make sure Azure CLI is installed and the Azure DevOps extension has been added (ref. [Get started with Azure DevOps CLI](https://learn.microsoft.com/en-us/azure/devops/cli/))
 
 ```bash
 az --version
 az extension add --name azure-devops
 ```
 
-* Connect to Azure
+* Connect to Azure (ref. [Sign in with a personal access token](https://learn.microsoft.com/en-us/azure/devops/cli/log-in-via-pat))
 
 ```bash
 export AZURE_DEVOPS_EXT_PAT=xxxxxxxxxx
 ```
 
-* Run the migration script
+* Run the migration script (ref. [az repos](https://learn.microsoft.com/en-us/cli/azure/repos))
 
 ```bash
 scripts/migrate_azure_repos.sh <oldorg> <oldproject> <neworg> <newproject> <reponame> <repoid> <tempdirpath>
