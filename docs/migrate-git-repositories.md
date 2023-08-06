@@ -36,3 +36,15 @@ export AZURE_DEVOPS_EXT_PAT=xxxxxxxxxx
 ```bash
 scripts/migrate_azure_repos.sh <oldorg> <oldproject> <oldrepo> <neworg> <newproject> <newrepo> <repoid> <tempdirpath>
 ```
+
+* Optionnally, migrate all repositories of a project
+
+```bash
+while read repository
+do
+  name=$(echo "$repository" | jq -r .name)
+  id=$(echo "$repository" | jq -r .id)
+  echo "Repository ${id}, ${name}"
+  scripts/migrate_azure_repos.sh <oldorg> <oldproject> $name <neworg> <newproject> <someprefix>$name $id <tempdirpath>
+done < <(echo `az repos list --project <oldproject>` | jq -c '.[]')
+```

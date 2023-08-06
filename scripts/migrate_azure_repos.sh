@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 originorganization=$1
 originproject=$2
