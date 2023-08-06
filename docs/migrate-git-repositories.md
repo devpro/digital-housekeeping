@@ -34,5 +34,5 @@ export AZURE_DEVOPS_EXT_PAT=xxxxxxxxxx
 * Run the migration script (ref. [az repos](https://learn.microsoft.com/en-us/cli/azure/repos))
 
 ```bash
-scripts/migrate_azure_repos.sh <oldorg> <oldproject> <neworg> <newproject> <reponame> <repoid> <tempdirpath>
+scripts/migrate_azure_repos.sh <oldorg> <oldproject> <oldrepo> <neworg> <newproject> <newrepo> <repoid> <tempdirpath>
 ```
