@@ -2,6 +2,12 @@
 
 Processes for digital resources housekeeping. Keep it clean!
 
-## Codebases
+## Recipes
+
+### Codebases
 
 * [Migrate git repositories](docs/migrate-git-repositories.md)
+
+## Contributing
+
+Follow this [guide](CONTRIBUTING.md).

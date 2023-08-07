@@ -1,26 +1,10 @@
 # Migrate git repositories
 
-## Actions
-
-1. Clone origin repository
-2. Checkout all branches
-3. Create destination repository
-4. Set destination remote
-5. Push all branches with tags to destination
-6. Check destination content
-7. Delete origin repository
-
 ## Usage
 
-```bash
-scripts/migrate_git_repository.sh <origin> <destination>
-```
+### Azure Repo to Azure Repo (Azure DevOps)
 
-## Usecases
-
-### Git repository migration between Azure Repos (Azure DevOps)
-
-* Make sure Azure CLI is installed and the Azure DevOps extension has been added (ref. [Get started with Azure DevOps CLI](https://learn.microsoft.com/en-us/azure/devops/cli/))
+* Make sure Azure CLI is installed and Azure DevOps extension has been added (ref. [Get started with Azure DevOps CLI](https://learn.microsoft.com/en-us/azure/devops/cli/))
 
 ```bash
 az --version
@@ -36,6 +20,8 @@ git config --global pager.tag false
 * Connect to Azure (ref. [Sign in with a personal access token](https://learn.microsoft.com/en-us/azure/devops/cli/log-in-via-pat))
 
 ```bash
+az login
+# or
 export AZURE_DEVOPS_EXT_PAT=xxxxxxxxxx
 ```
 
@@ -56,3 +42,15 @@ do
   scripts/migrate_azure_repos.sh <oldorg> <oldproject> $name <neworg> <newproject> <someprefix>$name $id <tempdirpath>
 done < <(echo `az repos list --organization https://dev.azure.com/<oldorg> --project <oldproject>` | jq -c '.[]')
 ```
+
+## Behind the scenes
+
+### General workflow
+
+1. Clone origin repository
+2. Checkout all branches
+3. Create destination repository
+4. Set destination remote
+5. Push all branches with tags to destination
+6. Check destination content
+7. Delete origin repository
