@@ -4,9 +4,11 @@
 
 1. Clone origin repository
 2. Checkout all branches
-3. Add destination remote
-4. Push all branches with tags to destination
-5. Check destination content
+3. Create destination repository
+4. Set destination remote
+5. Push all branches with tags to destination
+6. Check destination content
+7. Delete origin repository
 
 ## Usage
 
@@ -23,6 +25,12 @@ scripts/migrate_git_repository.sh <origin> <destination>
 ```bash
 az --version
 az extension add --name azure-devops
+```
+
+* Configure git to avoid issues
+
+```bash
+git config --global pager.tag false
 ```
 
 * Connect to Azure (ref. [Sign in with a personal access token](https://learn.microsoft.com/en-us/azure/devops/cli/log-in-via-pat))
@@ -46,5 +54,5 @@ do
   id=$(echo "$repository" | jq -r .id)
   echo "Repository ${id}, ${name}"
   scripts/migrate_azure_repos.sh <oldorg> <oldproject> $name <neworg> <newproject> <someprefix>$name $id <tempdirpath>
-done < <(echo `az repos list --project <oldproject>` | jq -c '.[]')
+done < <(echo `az repos list --organization https://dev.azure.com/<oldorg> --project <oldproject>` | jq -c '.[]')
 ```
